@@ -38,6 +38,7 @@ class Settings
             // General settings
             'address_limit'             => 20,
             'enable_my_account'         => 'no', // Disabled by default - use shortcodes via page builder instead
+            'hide_wc_addresses'         => 'yes', // Hide default WooCommerce addresses on My Account
             
             // Display settings
             'collapsible_picker'        => 'yes', // Show as collapsible toggle button
@@ -116,7 +117,7 @@ class Settings
             $value = $settings[$key];
             
             // Sanitize based on key type
-            if (in_array($key, ['enable_billing', 'enable_shipping', 'enable_my_account', 'collapsible_picker'])) {
+            if (in_array($key, ['enable_billing', 'enable_shipping', 'enable_my_account', 'collapsible_picker', 'hide_wc_addresses'])) {
                 $sanitized[$key] = $value === 'yes' ? 'yes' : 'no';
             } elseif (in_array($key, ['billing_display_position', 'shipping_display_position'])) {
                 $sanitized[$key] = in_array($value, ['above', 'below']) ? $value : 'above';
@@ -163,6 +164,14 @@ class Settings
     public static function get_address_limit(): int
     {
         return (int) self::get('address_limit', 20);
+    }
+    
+    /**
+     * Check if default WooCommerce addresses should be hidden.
+     */
+    public static function should_hide_wc_addresses(): bool
+    {
+        return self::get('hide_wc_addresses') === 'yes';
     }
 }
 

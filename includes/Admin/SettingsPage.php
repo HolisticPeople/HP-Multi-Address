@@ -61,6 +61,7 @@ class SettingsPage
             'enable_shipping'           => isset($_POST['enable_shipping']) ? 'yes' : 'no',
             'enable_my_account'         => isset($_POST['enable_my_account']) ? 'yes' : 'no',
             'collapsible_picker'        => isset($_POST['collapsible_picker']) ? 'yes' : 'no',
+            'hide_wc_addresses'         => isset($_POST['hide_wc_addresses']) ? 'yes' : 'no',
             'billing_display_position'  => sanitize_key($_POST['billing_display_position'] ?? 'above'),
             'shipping_display_position' => sanitize_key($_POST['shipping_display_position'] ?? 'above'),
             'billing_shortcode'         => sanitize_text_field(wp_unslash($_POST['billing_shortcode'] ?? '')),
@@ -130,6 +131,18 @@ class SettingsPage
                                        value="yes" 
                                        <?php checked($settings['collapsible_picker'], 'yes'); ?>>
                                 <?php esc_html_e('Show address picker as collapsible toggle button on checkout', 'hp-multi-address'); ?>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php esc_html_e('Hide WooCommerce Addresses', 'hp-multi-address'); ?></th>
+                        <td>
+                            <label>
+                                <input type="checkbox" 
+                                       name="hide_wc_addresses" 
+                                       value="yes" 
+                                       <?php checked($settings['hide_wc_addresses'], 'yes'); ?>>
+                                <?php esc_html_e('Hide default WooCommerce addresses on My Account page (use when placing shortcodes manually)', 'hp-multi-address'); ?>
                             </label>
                         </td>
                     </tr>

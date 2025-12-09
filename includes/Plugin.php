@@ -33,7 +33,33 @@ class Plugin
             // My Account page address management
             $accountIntegration = new AccountIntegration();
             $accountIntegration->register();
+            
+            // Hide default WooCommerce addresses if setting enabled
+            if (Settings::should_hide_wc_addresses()) {
+                add_action('wp_head', [self::class, 'output_hide_wc_addresses_css']);
+            }
         }
+    }
+    
+    /**
+     * Output CSS to hide default WooCommerce addresses on My Account.
+     */
+    public static function output_hide_wc_addresses_css(): void
+    {
+        if (!is_account_page()) {
+            return;
+        }
+        
+        ?>
+        <style id="hp-ma-hide-wc-addresses">
+        /* Hide default WooCommerce My Account addresses - HP Multi-Address */
+        .woocommerce-Addresses.col2-set.addresses,
+        .woocommerce-MyAccount-content > p:first-of-type,
+        .u-columns.woocommerce-Addresses.col2-set.addresses {
+            display: none !important;
+        }
+        </style>
+        <?php
     }
     
     /**
