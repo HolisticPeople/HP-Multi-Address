@@ -37,7 +37,7 @@ class Settings
             
             // General settings
             'address_limit'             => 20,
-            'enable_my_account'         => 'yes',
+            'enable_my_account'         => 'no', // Disabled by default - use shortcodes via page builder instead
             
             // Display settings
             'collapsible_picker'        => 'yes', // Show as collapsible toggle button
