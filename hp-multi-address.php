@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Plugin constants
-define('HP_MA_VERSION', '1.0.0');
+define('HP_MA_VERSION', '1.0.1');
 define('HP_MA_FILE', __FILE__);
 define('HP_MA_PATH', plugin_dir_path(__FILE__));
 define('HP_MA_URL', plugin_dir_url(__FILE__));
@@ -50,8 +50,20 @@ function hp_ma_is_react_widgets_active(): bool
     if (is_multisite()) {
         $active_plugins = array_merge($active_plugins, get_site_option('active_sitewide_plugins', []));
     }
-    return in_array('HP-React-Widgets/hp-react-widgets.php', $active_plugins)
-        || array_key_exists('HP-React-Widgets/hp-react-widgets.php', $active_plugins);
+    
+    // Check both possible folder names (local dev vs deployed)
+    $possible_paths = [
+        'HP-React-Widgets/hp-react-widgets.php',
+        'hp-react-widgets/hp-react-widgets.php',
+    ];
+    
+    foreach ($possible_paths as $path) {
+        if (in_array($path, $active_plugins) || array_key_exists($path, $active_plugins)) {
+            return true;
+        }
+    }
+    
+    return false;
 }
 
 /**

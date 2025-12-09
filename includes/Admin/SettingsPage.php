@@ -18,7 +18,8 @@ class SettingsPage
      */
     public function register(): void
     {
-        add_action('admin_menu', [$this, 'add_menu']);
+        // Priority 99 to ensure WooCommerce menu is already registered
+        add_action('admin_menu', [$this, 'add_menu'], 99);
         add_action('admin_init', [$this, 'handle_save']);
     }
     
@@ -83,6 +84,9 @@ class SettingsPage
         ?>
         <div class="wrap">
             <h1><?php esc_html_e('HP Multi-Address Settings', 'hp-multi-address'); ?></h1>
+            <p class="description" style="margin-top: -10px;">
+                <?php printf(esc_html__('Version %s', 'hp-multi-address'), HP_MA_VERSION); ?>
+            </p>
             
             <?php settings_errors('hp_ma'); ?>
             
