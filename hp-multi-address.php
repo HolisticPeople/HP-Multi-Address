@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Plugin constants
-define('HP_MA_VERSION', '1.0.7');
+define('HP_MA_VERSION', '1.0.8');
 define('HP_MA_FILE', __FILE__);
 define('HP_MA_PATH', plugin_dir_path(__FILE__));
 define('HP_MA_URL', plugin_dir_url(__FILE__));
