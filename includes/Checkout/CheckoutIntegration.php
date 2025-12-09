@@ -459,6 +459,34 @@ class CheckoutIntegration
         .hp-ma-wrapper {
             clear: both;
         }
+        
+        /* Fix for cropped address picker on checkout */
+        .hp-ma-shortcode-container {
+            overflow: visible !important;
+            min-height: auto !important;
+            height: auto !important;
+        }
+        
+        /* Ensure the address slider can scroll horizontally */
+        .hp-ma-shortcode-container .address-slider {
+            overflow-x: auto !important;
+            overflow-y: visible !important;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            padding-bottom: 10px;
+        }
+        
+        /* Ensure cards are fully visible */
+        .hp-ma-shortcode-container .address-card {
+            overflow: visible !important;
+        }
+        
+        /* Fix any parent containers that might be causing cropping */
+        .hp-ma-wrapper,
+        .hp-ma-wrapper > div,
+        [id^="hp-address-card-picker"] {
+            overflow: visible !important;
+        }
         </style>
         <?php
     }
