@@ -54,8 +54,15 @@ class Plugin
         <style id="hp-ma-hide-wc-addresses">
         /* Hide default WooCommerce My Account addresses - HP Multi-Address */
         .woocommerce-Addresses.col2-set.addresses,
-        .woocommerce-MyAccount-content > p:first-of-type,
         .u-columns.woocommerce-Addresses.col2-set.addresses {
+            display: none !important;
+        }
+        /* Hide "The following addresses will be used on the checkout page by default." text */
+        .woocommerce-MyAccount-content > p:first-of-type,
+        .woocommerce-MyAccount-content-wrapper p:first-of-type,
+        .elementor-widget-woocommerce-my-account p:first-of-type,
+        p:has(+ .woocommerce-Addresses),
+        p:has(+ .u-columns.woocommerce-Addresses) {
             display: none !important;
         }
         </style>
