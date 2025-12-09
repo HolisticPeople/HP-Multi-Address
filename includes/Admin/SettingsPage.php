@@ -31,7 +31,7 @@ class SettingsPage
             'woocommerce',
             __('HP Multi-Address', 'hp-multi-address'),
             __('Multi-Address', 'hp-multi-address'),
-            'manage_woocommerce',
+            'manage_options',
             self::MENU_SLUG,
             [$this, 'render_page']
         );
@@ -46,7 +46,7 @@ class SettingsPage
             return;
         }
         
-        if (!current_user_can('manage_woocommerce')) {
+        if (!current_user_can('manage_options')) {
             return;
         }
         
