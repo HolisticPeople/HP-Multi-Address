@@ -123,7 +123,8 @@ class Settings
             } elseif ($key === 'address_limit') {
                 $sanitized[$key] = absint($value) ?: 20;
             } elseif (in_array($key, ['billing_shortcode', 'shipping_shortcode'])) {
-                $sanitized[$key] = sanitize_text_field($value);
+                // Remove any escaped slashes and sanitize
+                $sanitized[$key] = sanitize_text_field(wp_unslash($value));
             } else {
                 $sanitized[$key] = sanitize_text_field($value);
             }
