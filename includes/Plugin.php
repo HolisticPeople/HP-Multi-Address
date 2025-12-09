@@ -58,12 +58,18 @@ class Plugin
             display: none !important;
         }
         /* Hide "The following addresses will be used on the checkout page by default." text */
+        /* Only target direct children to avoid affecting nested components like our address cards */
+        .woocommerce-MyAccount-content > p:first-child,
         .woocommerce-MyAccount-content > p:first-of-type,
-        .woocommerce-MyAccount-content-wrapper p:first-of-type,
-        .elementor-widget-woocommerce-my-account p:first-of-type,
-        p:has(+ .woocommerce-Addresses),
-        p:has(+ .u-columns.woocommerce-Addresses) {
+        .woocommerce-edit-address > p:first-child,
+        .woocommerce-edit-address > p:first-of-type {
             display: none !important;
+        }
+        /* Ensure our address card picker content is never hidden */
+        [id^="hp-address-card-picker"] p,
+        .address-card p,
+        [data-hp-widget] p {
+            display: block !important;
         }
         </style>
         <?php
