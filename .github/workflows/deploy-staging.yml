@@ -50,3 +50,4 @@ jobs:
             -e "ssh -p ${KINSTA_PORT:-22}" \
             ./ "${KINSTA_USER}@${KINSTA_HOST}:${REMOTE_PATH}/"
 
+

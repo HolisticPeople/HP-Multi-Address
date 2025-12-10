@@ -58,12 +58,19 @@ class Plugin
             display: none !important;
         }
         /* Hide "The following addresses will be used on the checkout page by default." text */
-        /* Use very specific selectors that won't affect our card components */
+        /* Target the specific p element that WooCommerce adds */
         .woocommerce-MyAccount-content > p:first-of-type,
+        .woocommerce-MyAccount-content-wrapper p:first-of-type,
         .woocommerce-edit-address > p:first-of-type,
         .e-my-account-tab__address > p:first-of-type,
-        .woocommerce-account .woocommerce > p:first-of-type {
+        .woocommerce-account .woocommerce > p:first-of-type,
+        .woocommerce-MyAccount-content-wrapper [data-elementor-type="container"] > p:first-of-type {
             display: none !important;
+        }
+        /* Ensure our address card content is never hidden */
+        .address-card p,
+        [id^="hp-address-card-picker"] p {
+            display: block !important;
         }
         </style>
         <?php
