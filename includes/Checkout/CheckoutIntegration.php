@@ -278,6 +278,7 @@ class CheckoutIntegration
                     'Finland': 'FI',
                     'Poland': 'PL',
                     'Portugal': 'PT',
+                    'Puerto Rico': 'PR',
                 };
                 
                 return countryNameToCode[countryValue] || countryValue;
