@@ -238,50 +238,52 @@ class CheckoutIntegration
             function getCountryCode(countryValue) {
                 if (!countryValue) return '';
                 
+                const val = countryValue.trim();
+                
                 // Already a 2-letter code
-                if (countryValue.length === 2 && countryValue === countryValue.toUpperCase()) {
-                    return countryValue;
+                if (val.length === 2) {
+                    return val.toUpperCase();
                 }
                 
                 // Format "Country Name (XX)"
-                const parenMatch = countryValue.match(/\(([A-Z]{2})\)$/);
+                const parenMatch = val.match(/\(([A-Z]{2})\)$/);
                 if (parenMatch) {
                     return parenMatch[1];
                 }
                 
-                // Common country name to code mapping
+                // Common country name to code mapping (case-insensitive)
                 const countryNameToCode = {
-                    'United States': 'US',
-                    'United Kingdom': 'GB',
-                    'Canada': 'CA',
-                    'Australia': 'AU',
-                    'Germany': 'DE',
-                    'France': 'FR',
-                    'Italy': 'IT',
-                    'Spain': 'ES',
-                    'Netherlands': 'NL',
-                    'Belgium': 'BE',
-                    'Ireland': 'IE',
-                    'New Zealand': 'NZ',
-                    'Israel': 'IL',
-                    'Mexico': 'MX',
-                    'Brazil': 'BR',
-                    'Japan': 'JP',
-                    'China': 'CN',
-                    'India': 'IN',
-                    'Singapore': 'SG',
-                    'Switzerland': 'CH',
-                    'Austria': 'AT',
-                    'Sweden': 'SE',
-                    'Norway': 'NO',
-                    'Denmark': 'DK',
-                    'Finland': 'FI',
-                    'Poland': 'PL',
-                    'Portugal': 'PT',
-                    'Puerto Rico': 'PR',
+                    'united states': 'US',
+                    'united kingdom': 'GB',
+                    'canada': 'CA',
+                    'australia': 'AU',
+                    'germany': 'DE',
+                    'france': 'FR',
+                    'italy': 'IT',
+                    'spain': 'ES',
+                    'netherlands': 'NL',
+                    'belgium': 'BE',
+                    'ireland': 'IE',
+                    'new zealand': 'NZ',
+                    'israel': 'IL',
+                    'mexico': 'MX',
+                    'brazil': 'BR',
+                    'japan': 'JP',
+                    'china': 'CN',
+                    'india': 'IN',
+                    'singapore': 'SG',
+                    'switzerland': 'CH',
+                    'austria': 'AT',
+                    'sweden': 'SE',
+                    'norway': 'NO',
+                    'denmark': 'DK',
+                    'finland': 'FI',
+                    'poland': 'PL',
+                    'portugal': 'PT',
+                    'puerto rico': 'PR',
                 };
                 
-                return countryNameToCode[countryValue] || countryValue;
+                return countryNameToCode[val.toLowerCase()] || val;
             }
 
             /**
@@ -299,6 +301,11 @@ class CheckoutIntegration
                         countryField.value = countryCode;
                         jQuery(countryField).trigger('change').trigger('input');
                         
+                        // Puerto Rico specific handling: if PR is country, clear state if it exists
+                        if (countryCode === 'PR' && address.state) {
+                            address.state = ''; 
+                        }
+
                         // Wait for WooCommerce to update state dropdown
                         setTimeout(function() {
                             fillRemainingFields(address, mapping);
