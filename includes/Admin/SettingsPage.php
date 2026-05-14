@@ -192,7 +192,7 @@ class SettingsPage
                                    value="<?php echo esc_attr($settings['billing_shortcode']); ?>" 
                                    class="large-text code">
                             <p class="description">
-                                <?php esc_html_e('The HP React Widgets shortcode to render for billing addresses.', 'hp-multi-address'); ?>
+                                <?php esc_html_e('The HP UI Widgets shortcode to render for billing addresses.', 'hp-multi-address'); ?>
                             </p>
                         </td>
                     </tr>
@@ -242,7 +242,7 @@ class SettingsPage
                                    value="<?php echo esc_attr($settings['shipping_shortcode']); ?>" 
                                    class="large-text code">
                             <p class="description">
-                                <?php esc_html_e('The HP React Widgets shortcode to render for shipping addresses.', 'hp-multi-address'); ?>
+                                <?php esc_html_e('The HP UI Widgets shortcode to render for shipping addresses.', 'hp-multi-address'); ?>
                             </p>
                         </td>
                     </tr>
@@ -251,9 +251,9 @@ class SettingsPage
                 <h2 class="title"><?php esc_html_e('Dependency Status', 'hp-multi-address'); ?></h2>
                 <table class="form-table">
                     <tr>
-                        <th scope="row"><?php esc_html_e('HP React Widgets', 'hp-multi-address'); ?></th>
+                        <th scope="row"><?php esc_html_e('HP UI Widgets', 'hp-multi-address'); ?></th>
                         <td>
-                            <?php if (hp_ma_is_react_widgets_active()): ?>
+                            <?php if (hp_ma_is_ui_widgets_active()): ?>
                                 <span style="color: green;">✓ <?php esc_html_e('Active', 'hp-multi-address'); ?></span>
                             <?php else: ?>
                                 <span style="color: red;">✗ <?php esc_html_e('Not Active - Required for address picker UI', 'hp-multi-address'); ?></span>
