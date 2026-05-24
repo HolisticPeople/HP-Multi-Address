@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       HP Multi-Address
  * Description:       Multiple shipping/billing addresses for WooCommerce. Integrates with HP UI Widgets for modern address picker UI.
- * Version:           2.0.1
+ * Version:           2.0.2
  * Author:            Holistic People
  * Text Domain:       hp-multi-address
  * Requires at least: 6.0
@@ -22,7 +22,7 @@ if (PHP_VERSION_ID < 80500) {
 }
 
     // Plugin constants
-define('HP_MA_VERSION', '2.0.1');
+define('HP_MA_VERSION', '2.0.2');
 define('HP_MA_FILE', __FILE__);
 define('HP_MA_PATH', plugin_dir_path(__FILE__));
 define('HP_MA_URL', plugin_dir_url(__FILE__));

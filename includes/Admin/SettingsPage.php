@@ -81,9 +81,11 @@ class SettingsPage
      */
     public function render_page(): void
     {
+        do_action('hp_zen_enqueue_admin_surface', 'hp-multi-address');
+
         $settings = Settings::get_all();
         ?>
-        <div class="wrap">
+        <div class="wrap hp-zen-admin-surface hp-zen-admin-surface--hp-multi-address">
             <h1><?php esc_html_e('HP Multi-Address Settings', 'hp-multi-address'); ?></h1>
             <p class="description" style="margin-top: -10px;">
                 <?php printf(esc_html__('Version %s', 'hp-multi-address'), HP_MA_VERSION); ?>
@@ -296,4 +298,3 @@ class SettingsPage
         <?php
     }
 }
-
